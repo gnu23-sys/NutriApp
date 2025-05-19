@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4CAF50',
+                        background: {
+                            light: '#FFFFFF',
+                            dark: '#181818'
+                        },
+                        text: {
+                            light: '#333333',
+                            dark: '#F5F5F5'
+                        }
+                    }
+                }
+            }
+        }
+
+        // Detectar preferência de tema escuro
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark min-h-screen">
+    <header class="bg-primary text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">NutriApp by Gnu23</h1>
+            <div>
+                <button id="menuButton" class="p-2 rounded focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav id="mobileMenu" class="hidden bg-white dark:bg-gray-800 shadow-lg absolute w-full z-10">
+        <ul class="py-2">
+            <li><a href="#dietas" class="block px-4 py-2 hover:bg-primary hover:text-white">Dicas de Dietas</a></li>
+            <li><a href="#suplementos" class="block px-4 py-2 hover:bg-primary hover:text-white">Suplementação</a></li>
+            <li><a href="#calculadora" class="block px-4 py-2 hover:bg-primary hover:text-white">Calculadora IMC</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mx-auto p-4 pb-16">
+        <!-- Seção de boas-vindas -->
+        <section class="mb-8 text-center">
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-primary mb-4">Bem-vindo ao NutriApp</h2>
+                <p class="mb-4">Seu guia completo para uma alimentação saudável e suplementação adequada.</p>
+                <div class="w-24 h-24 mx-auto mb-4">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-secondary">
+                        <path d="M20 10C20 14.4183 16.4183 18 12 18C7.58172 18 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z" stroke="currentColor" stroke-width="2" fill="#4CAF50" fill-opacity="0.3"></path>
+                        <path d="M12 18V22M8 22H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <p class="text-sm">Descubra como melhorar sua alimentação e otimizar sua saúde com nossas recomendações personalizadas.</p>
+            </div>
+        </section>
+
+        <!-- Seção de Dicas de Dietas -->
+        <section id="dietas" class="mb-8">
+            <h2 class="text-xl font-bold text-primary mb-4 border-b pb-2">Dicas de Dietas</h2>
+            
+            <div class="space-y-4">
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Dieta Mediterrânea</h3>
+                    <p class="mb-2">Rica em frutas, vegetais, grãos integrais, azeite e peixes.</p>
+                    <ul class="list-disc list-inside text-sm pl-2">
+                        <li>Reduz risco de doenças cardíacas</li>
+                        <li>Melhora a saúde cerebral</li>
+                        <li>Auxilia no controle de peso</li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Alimentação Low Carb</h3>
+                    <p class="mb-2">Redução de carboidratos para priorizar proteínas e gorduras saudáveis.</p>
+                    <ul class="list-disc list-inside text-sm pl-2">
+                        <li>Eficaz para perda de peso</li>
+                        <li>Ajuda a controlar níveis de açúcar no sangue</li>
+                        <li>Pode reduzir apetite e controlar fome</li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Dieta Baseada em Plantas</h3>
+                    <p class="mb-2">Prioriza alimentos de origem vegetal, reduzindo ou eliminando produtos animais.</p>
+                    <ul class="list-disc list-inside text-sm pl-2">
+                        <li>Rica em fibras e nutrientes</li>
+                        <li>Reduz inflamação no organismo</li>
+                        <li>Menor impacto ambiental</li>
+                    </ul>
+                </div>
+
+                <button id="loadMoreDiets" class="w-full mt-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition">
+                    Ver mais dicas
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção de Suplementação -->
+        <section id="suplementos" class="mb-8">
+            <h2 class="text-xl font-bold text-primary mb-4 border-b pb-2">Guia de Suplementação</h2>
+            
+            <div class="space-y-4">
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Proteínas em Pó</h3>
+                    <p class="mb-2">Ideal para recuperação muscular e suporte ao ganho de massa magra.</p>
+                    <div class="text-sm">
+                        <p class="font-medium">Tipos recomendados:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Whey Protein (absorção rápida)</li>
+                            <li>Caseína (absorção lenta, ideal antes de dormir)</li>
+                            <li>Proteína vegetal (opção para veganos)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Creatina</h3>
+                    <p class="mb-2">Aumenta a força e potência muscular durante exercícios de alta intensidade.</p>
+                    <div class="text-sm">
+                        <p class="font-medium">Benefícios:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Melhora desempenho em treinos</li>
+                            <li>Auxilia na recuperação muscular</li>
+                            <li>5g diários é a dose mais comum</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                    <h3 class="font-bold text-lg mb-2">Ômega-3</h3>
+                    <p class="mb-2">Ácidos graxos essenciais com propriedades anti-inflamatórias.</p>
+                    <div class="text-sm">
+                        <p class="font-medium">Fontes:</p>
+                        <ul class="list-disc list-inside pl-2">
+                            <li>Óleo de peixe (EPA e DHA)</li>
+                            <li>Óleo de linhaça (ALA)</li>
+                            <li>Beneficia saúde cardiovascular e cerebral</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button id="loadMoreSupplements" class="w-full mt-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition">
+                    Ver mais suplementos
+                </button>
+            </div>
+        </section>
+
+        <!-- Calculadora de IMC -->
+        <section id="calculadora" class="mb-8">
+            <h2 class="text-xl font-bold text-primary mb-4 border-b pb-2">Calculadora de IMC</h2>
+            
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                <form id="imcForm" class="space-y-4">
+                    <div>
+                        <label for="weight" class="block text-sm font-medium mb-1">Peso (kg)</label>
+                        <input type="number" id="weight" class="w-full p-2 border rounded text-base text-black" placeholder="Ex: 70" min="30" max="250">
+                    </div>
+                    <div>
+                        <label for="height" class="block text-sm font-medium mb-1">Altura (cm)</label>
+                        <input type="number" id="height" class="w-full p-2 border rounded text-base text-black" placeholder="Ex: 170" min="100" max="250">
+                    </div>
+                    <button type="submit" class="w-full py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition">
+                        Calcular
+                    </button>
+                </form>
+
+                <div id="imcResult" class="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg hidden">
+                    <p class="font-bold mb-2">Seu IMC: <span id="imcValue"></span></p>
+                    <p id="imcCategory"></p>
+                    <p id="imcDescription" class="text-sm mt-2"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="fixed bottom-0 w-full bg-primary text-white p-2 text-center text-sm">
+        <p>Criado por Gnu23 © 2025</p>
+        <p>Contacto: https://t.me/gnu23</p>
+    </footer>
+
+    <script>
+        // Gerenciamento do Menu Mobile
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Formulário de IMC
+        const imcForm = document.getElementById('imcForm');
+        const imcResult = document.getElementById('imcResult');
+        const imcValue = document.getElementById('imcValue');
+        const imcCategory = document.getElementById('imcCategory');
+        const imcDescription = document.getElementById('imcDescription');
+        
+        imcForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // cm para metros
+            
+            if (weight && height) {
+                const imc = weight / (height * height);
+                
+                imcValue.textContent = imc.toFixed(1);
+                
+                // Categorias de IMC
+                let category, description;
+                
+                if (imc < 18.5) {
+                    category = "Abaixo do peso";
+                    description = "Você está abaixo do peso ideal. Considere consultar um nutricionista para uma dieta que ajude a ganhar peso de forma saudável.";
+                } else if (imc < 25) {
+                    category = "Peso normal";
+                    description = "Seu peso está dentro da faixa considerada saudável. Continue mantendo hábitos alimentares equilibrados e prática regular de exercícios.";
+                } else if (imc < 30) {
+                    category = "Sobrepeso";
+                    description = "Você está com sobrepeso. Uma alimentação balanceada e exercícios regulares podem ajudar a alcançar um peso mais saudável.";
+                } else if (imc < 35) {
+                    category = "Obesidade Grau I";
+                    description = "Você está com obesidade grau I. Recomenda-se consultar um profissional de saúde para orientações específicas.";
+                } else if (imc < 40) {
+                    category = "Obesidade Grau II";
+                    description = "Você está com obesidade grau II. É importante buscar acompanhamento médico para um plano de redução de peso.";
+                } else {
+                    category = "Obesidade Grau III";
+                    description = "Você está com obesidade grau III. Busque orientação médica com urgência para um tratamento adequado.";
+                }
+                
+                imcCategory.textContent = category;
+                imcDescription.textContent = description;
+                
+                imcResult.classList.remove('hidden');
+            }
+        });
+
+        // Carregamento de conteúdo adicional
+        document.getElementById('loadMoreDiets').addEventListener('click', function() {
+            const button = this;
+            button.innerHTML = '<span class="inline-block animate-spin mr-2">↻</span> Carregando...';
+            button.disabled = true;
+            
+            // Simula carregamento
+            setTimeout(() => {
+                const dietsContainer = button.parentElement;
+                
+                const newDiets = [
+                    {
+                        title: "Jejum Intermitente",
+                        description: "Alternar entre períodos de alimentação e jejum, geralmente seguindo um padrão como 16:8.",
+                        benefits: [
+                            "Pode ajudar na perda de peso",
+                            "Melhora sensibilidade à insulina",
+                            "Potenciais benefícios para longevidade"
+                        ]
+                    },
+                    {
+                        title: "Dieta DASH",
+                        description: "Abordagem alimentar para combater hipertensão com alimentos ricos em nutrientes e baixo teor de sódio.",
+                        benefits: [
+                            "Reduz pressão arterial",
+                            "Diminui risco de doenças cardíacas",
+                            "Melhora saúde geral"
+                        ]
+                    }
+                ];
+                
+                newDiets.forEach(diet => {
+                    const dietElement = document.createElement('div');
+                    dietElement.className = 'p-4 bg-white dark:bg-gray-800 rounded-lg shadow mt-4';
+                    
+                    let benefitsList = '';
+                    diet.benefits.forEach(benefit => {
+                        benefitsList += `<li>${benefit}</li>`;
+                    });
+                    
+                    dietElement.innerHTML = `
+                        <h3 class="font-bold text-lg mb-2">${diet.title}</h3>
+                        <p class="mb-2">${diet.description}</p>
+                        <ul class="list-disc list-inside text-sm pl-2">
+                            ${benefitsList}
+                        </ul>
+                    `;
+                    
+                    // Inserir antes do botão
+                    dietsContainer.insertBefore(dietElement, button);
+                });
+                
+                button.innerHTML = 'Ver mais dicas';
+                button.disabled = false;
+            }, 1000);
+        });
+
+        document.getElementById('loadMoreSupplements').addEventListener('click', function() {
+            const button = this;
+            button.innerHTML = '<span class="inline-block animate-spin mr-2">↻</span> Carregando...';
+            button.disabled = true;
+            
+            // Simula carregamento
+            setTimeout(() => {
+                const supplementsContainer = button.parentElement;
+                
+                const newSupplements = [
+                    {
+                        title: "Vitamina D",
+                        description: "Essencial para saúde óssea e função imunológica.",
+                        details: [
+                            "Muitas pessoas têm deficiência",
+                            "Especialmente importante para quem tem pouca exposição solar",
+                            "Auxilia na absorção de cálcio"
+                        ]
+                    },
+                    {
+                        title: "Magnésio",
+                        description: "Mineral envolvido em mais de 300 reações enzimáticas no corpo.",
+                        details: [
+                            "Ajuda na função muscular e nervosa",
+                            "Contribui para saúde cardiovascular",
+                            "Pode melhorar qualidade do sono"
+                        ]
+                    }
+                ];
+                
+                newSupplements.forEach(supplement => {
+                    const supplementElement = document.createElement('div');
+                    supplementElement.className = 'p-4 bg-white dark:bg-gray-800 rounded-lg shadow mt-4';
+                    
+                    let detailsList = '';
+                    supplement.details.forEach(detail => {
+                        detailsList += `<li>${detail}</li>`;
+                    });
+                    
+                    supplementElement.innerHTML = `
+                        <h3 class="font-bold text-lg mb-2">${supplement.title}</h3>
+                        <p class="mb-2">${supplement.description}</p>
+                        <div class="text-sm">
+                            <p class="font-medium">Informações:</p>
+                            <ul class="list-disc list-inside pl-2">
+                                ${detailsList}
+                            </ul>
+                        </div>
+                    `;
+                    
+                    // Inserir antes do botão
+                    supplementsContainer.insertBefore(supplementElement, button);
+                });
+                
+                button.innerHTML = 'Ver mais suplementos';
+                button.disabled = false;
+            }, 1000);
+        });
+    </script>
+
+
+</body></html>
