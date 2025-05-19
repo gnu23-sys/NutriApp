@@ -40,3 +40,5 @@ Ideias, sugestões ou melhorias? Fica à vontade pra abrir uma issue ou mandar u
 Projeto livre sob a licença MIT. Vai na fé. ✌️
 
 Feito com 💚 e café por Gnu23
+
+Screanshot: https://github.com/gnu23-sys/NutriApp/blob/main/Screenshot%202025-05-19%2012.49.09.png
